@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visit Taniti</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="header">
+  <button id="menuBtn" onclick="toggleMenu()">&#9776;</button>
+  <span class="logo" onclick="showPage('home')">Visit Taniti</span>
+  <ul id="navList">
+    <li><a id="nav-stay" onclick="showPage('stay')">Where to Stay</a></li>
+    <li><a id="nav-eat" onclick="showPage('eat')">Where to Eat</a></li>
+    <li><a id="nav-todo" onclick="showPage('todo')">Things to Do</a></li>
+    <li><a id="nav-around" onclick="showPage('around')">Getting Around</a></li>
+    <li><a id="nav-info" onclick="showPage('info')">Travel Info</a></li>
+  </ul>
+  <div class="header-btns">
+    <button class="tripBtn" onclick="showPage('trip')">My Trip (<span id="tripCount">0</span>)</button>
+    <div class="bookWrap">
+      <button class="btn" onclick="toggleBookMenu()">Book Now</button>
+      <div id="bookMenu">
+        <a onclick="showPage('stay')">Book a Room</a>
+        <a onclick="showPage('todo')">Book an Activity</a>
+        <a onclick="showPage('eat')">Reserve a Table</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOME PAGE -->
+<div class="page show" id="home">
+  <div class="hero">
+    <div class="heroText">
+    <h1>Welcome to Taniti!</h1>
+    <p>Beaches, rainforest and a volcano all on one island.</p>
+    <button class="btn big" onclick="startPlanner()">Start Planning</button>
+    <p style="font-size:14px">Enter your dates and see hotels and activities that are open during your trip</p>
+    </div>
+  </div>
+
+  <h2>Plan your trip</h2>
+  <div class="row4">
+    <div class="box click" onclick="showPage('stay')">
+      <img class="pic" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=60&auto=format&fit=crop" alt="Where to Stay">
+      <h3>Where to Stay</h3>
+    </div>
+    <div class="box click" onclick="showPage('eat')">
+      <img class="pic" src="https://images.unsplash.com/photo-1524334788144-6dc88da21500?w=800&q=60&auto=format&fit=crop" alt="Where to Eat">
+      <h3>Where to Eat</h3>
+    </div>
+    <div class="box click" onclick="showPage('todo')">
+      <img class="pic" src="https://images.pexels.com/photos/4747784/pexels-photo-4747784.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Things to Do">
+      <h3>Things to Do</h3>
+    </div>
+    <div class="box click" onclick="showPage('around')">
+      <img class="pic" src="https://images.pexels.com/photos/3560366/pexels-photo-3560366.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Getting Around">
+      <h3>Getting Around</h3>
+    </div>
+  </div>
+
+  <h2>Popular Activities</h2>
+  <div class="scroll" id="popular"></div>
+
+  <div class="gray-box">
+    <h3>Before you go</h3>
+    <p>Taniti uses US dollars and the same outlets as the US. A lot of places are closed on national holidays so make sure to check before you book!</p>
+    <button class="btn2" onclick="showPage('info')">Travel Info</button>
+  </div>
+</div>
+
+<!-- PLANNER -->
+<div class="page" id="planner">
+  <h1>Plan Your Trip</h1>
+  <div class="steps">
+    <span id="step1">Step 1: Dates</span>
+    <span id="step2">Step 2: Where to stay</span>
+    <span id="step3">Step 3: Things to do</span>
+  </div>
+
+  <div id="plan1">
+    <p>When are you coming?</p>
+    <p>
+      Arriving: <input type="date" id="planStart">
+      Leaving: <input type="date" id="planEnd">
+    </p>
+    <p>
+      Adults: <input type="number" id="planAdults" value="2" min="1" style="width:60px">
+      Kids: <input type="number" id="planKids" value="0" min="0" style="width:60px">
+    </p>
+    <p class="red" id="planError"></p>
+    <button class="btn" onclick="planStep2()">Next</button>
+  </div>
+
+  <div id="plan2" style="display:none">
+    <p id="datesText"></p>
+    <p>Pick where you want to stay (or skip if you already have a place)</p>
+    <div id="planHotels"></div>
+    <button class="btn2" onclick="goToStep(1)">Back</button>
+    <button class="btn" onclick="planStep3()">Next</button>
+  </div>
+
+  <div id="plan3" style="display:none">
+    <p id="datesText2"></p>
+    <p>Here is everything that is open while you are there. You can add as many as you want.</p>
+    <div id="planActs"></div>
+    <br>
+    <button class="btn2" onclick="goToStep(2)">Back</button>
+    <button class="btn" onclick="showPage('trip')">Go to My Trip</button>
+  </div>
+</div>
+
+<!-- THINGS TO DO -->
+<div class="page" id="todo">
+  <h1>Things to Do</h1>
+  <div id="cats"></div>
+  <p>
+    Area:
+    <select id="areaPick" onchange="loadActivities()">
+      <option value="all">All</option>
+      <option>Taniti City</option>
+      <option>Merriton Landing</option>
+      <option>Island interior</option>
+    </select>
+    &nbsp; Open on:
+    <input type="date" id="datePick" onchange="loadActivities()">
+    <button class="btn2 sm" onclick="clearDate()">clear</button>
+    &nbsp;
+    <button class="btn2 sm" onclick="switchView('list')">List</button>
+    <button class="btn2 sm" onclick="switchView('map')">Map</button>
+  </p>
+  <div id="actList" class="row3"></div>
+  <div id="actMap" style="display:none"></div>
+</div>
+
+<!-- ACTIVITY PAGE (gets filled in with js) -->
+<div class="page" id="activity"></div>
+
+<!-- WHERE TO STAY -->
+<div class="page" id="stay">
+  <h1>Where to Stay</h1>
+  <p>All hotels and B&amp;Bs on Taniti are inspected by the government.</p>
+  <div class="gray-box">
+    Check in: <input type="date" id="stayStart" onchange="updateDates()">
+    Check out: <input type="date" id="stayEnd" onchange="updateDates()">
+    Guests: <input type="number" id="guests" value="2" min="1" style="width:55px">
+  </div>
+  <p>
+    Type:
+    <select id="typePick" onchange="loadHotels('hotelList')">
+      <option value="all">All</option>
+      <option>Resort</option>
+      <option>Hotel</option>
+      <option>Bed &amp; Breakfast</option>
+      <option>Hostel</option>
+    </select>
+    Area:
+    <select id="hotelArea" onchange="loadHotels('hotelList')">
+      <option value="all">All</option>
+      <option>Taniti City</option>
+      <option>Merriton Landing</option>
+      <option>Island interior</option>
+    </select>
+    <button class="btn2 sm" onclick="hotelView('list')">List</button>
+    <button class="btn2 sm" onclick="hotelView('map')">Map</button>
+  </p>
+  <div id="hotelList"></div>
+  <div id="hotelMap" style="display:none"></div>
+</div>
+
+<!-- WHERE TO EAT -->
+<div class="page" id="eat">
+  <h1>Where to Eat</h1>
+  <p>
+    Type of food:
+    <select id="foodPick" onchange="makeFoodList()">
+      <option value="all">All</option>
+      <option>Local fish &amp; rice</option>
+      <option>American</option>
+      <option>Pan-Asian</option>
+    </select>
+  </p>
+  <div id="foodList"></div>
+  <p><b>Groceries:</b> There are 2 supermarkets, 2 smaller grocery stores and a 24 hour convenience store on the island.</p>
+</div>
+
+<!-- GETTING AROUND -->
+<div class="page" id="around">
+  <h1>Getting Around</h1>
+  <p>Taniti City is flat and easy to walk around. Merriton Landing is also easy to walk.</p>
+  <div class="row3">
+    <div class="box">
+      <img class="pic" src="https://images.pexels.com/photos/10063994/pexels-photo-10063994.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Buses">
+      <h3>Buses</h3>
+      <p>Public buses run in Taniti City every day from 5am to 11pm. There are private buses for the rest of the island.</p>
+    </div>
+    <div class="box">
+      <img class="pic" src="https://images.pexels.com/photos/4737443/pexels-photo-4737443.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Taxis">
+      <h3>Taxis</h3>
+      <p>You can get a taxi in Taniti City.</p>
+    </div>
+    <div class="box">
+      <img class="pic" src="https://images.pexels.com/photos/248159/pexels-photo-248159.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Rental Cars">
+      <h3>Rental Cars</h3>
+      <p>There is a car rental place near the airport.</p>
+    </div>
+    <div class="box">
+      <img class="pic" src="https://images.pexels.com/photos/2736216/pexels-photo-2736216.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Bikes">
+      <h3>Bikes</h3>
+      <p>A few shops rent bikes. You have to wear a helmet, it's the law.</p>
+    </div>
+    <div class="box">
+      <img class="pic" src="https://images.pexels.com/photos/1052190/pexels-photo-1052190.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Getting to Taniti">
+      <h3>Getting to Taniti</h3>
+      <p>Most people fly into the airport. There is also a small cruise ship that stops in Yellow Leaf Bay one night a week.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TRAVEL INFO -->
+<div class="page" id="info">
+  <h1>Travel Info</h1>
+  <input type="text" id="search" placeholder="Search..." onkeyup="searchInfo()" style="width:300px">
+  <br><br>
+  <div id="infoList"></div>
+  <p id="noResults" class="red" style="display:none">No results</p>
+</div>
+
+<!-- MY TRIP -->
+<div class="page" id="trip">
+  <h1>My Trip</h1>
+  <div id="tripList"></div>
+</div>
+
+<!-- DONE -->
+<div class="page" id="done">
+  <h1>You're booked!</h1>
+  <p id="doneText"></p>
+  <div id="doneList"></div>
+  <br>
+  <button class="btn" onclick="showPage('todo')">Find more things to do</button>
+  <button class="btn2" onclick="showPage('home')">Home</button>
+</div>
+
+<div id="footer">
+  Taniti Tourism Office - info@visittaniti.com<br>
+  *prices, business names and holiday dates are made up for this project<br>Photos from Unsplash and Pexels
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

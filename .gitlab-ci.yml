@@ -1,0 +1,13 @@
+# deploys the site to GitLab Pages
+# everything in the public folder gets published
+image: alpine:latest
+
+pages:
+  stage: deploy
+  script:
+    - echo "Deploying the Taniti prototype to GitLab Pages"
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

@@ -1,0 +1,415 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* header */
+#header {
+  background-color: #1f6f9e;
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.logo {
+  flex: 1;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#navList {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+#navList a {
+  color: white;
+  cursor: pointer;
+}
+#navList a.current {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.header-btns {
+  flex: 1;
+  justify-content: flex-end;
+  display: flex;
+  gap: 8px;
+}
+#menuBtn {
+  display: none;
+  font-size: 26px;
+  background: none;
+  color: white;
+  border: none;
+}
+.tripBtn {
+  background: white;
+  color: #1f6f9e;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+/* book now menu */
+.bookWrap {
+  position: relative;
+}
+#bookMenu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 38px;
+  background: white;
+  border: 1px solid #999;
+  width: 170px;
+  z-index: 5;
+}
+#bookMenu a {
+  display: block;
+  padding: 10px;
+  color: black;
+  cursor: pointer;
+}
+#bookMenu a:hover {
+  background: #eee;
+}
+
+.btn {
+  background-color: #f5a623;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #e0911a;
+}
+.btn2 {
+  background: white;
+  border: 1px solid #1f6f9e;
+  color: #1f6f9e;
+  padding: 7px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.sm {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+.big {
+  font-size: 20px;
+  padding: 12px 25px;
+}
+
+.page {
+  display: none;
+  padding: 15px 30px;
+}
+.page.show {
+  display: block;
+}
+
+.hero {
+  background-color: #7cc3e0;
+  background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=60&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 50px 20px;
+}
+/* white box so you can read the text over the picture */
+.heroText {
+  background: rgba(255, 255, 255, 0.85);
+  display: inline-block;
+  padding: 20px 30px;
+  max-width: 600px;
+}
+.hero h1 {
+  font-size: 40px;
+  margin-top: 0;
+}
+
+.row4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 15px;
+}
+.row3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+}
+.box {
+  border: 1px solid #bbb;
+  padding: 10px;
+}
+.box h3 {
+  margin: 8px 0;
+}
+.click {
+  cursor: pointer;
+}
+
+/* pictures (just simple drawings for now) */
+.pic {
+  background: #ddd; /* shows gray if the picture doesnt load */
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+
+/* home page stuff is centered */
+#home {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+#home .scroll .box:first-child {
+  margin-left: auto;
+}
+#home .scroll .box:last-child {
+  margin-right: auto;
+}
+
+/* gray boxes where pictures will go */
+.picture {
+  background-color: #ddd;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+}
+
+.scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+}
+.scroll .box {
+  min-width: 200px;
+  flex: 1;
+}
+
+.gray-box {
+  background: #eee;
+  padding: 12px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.price {
+  color: gray;
+  font-size: 14px;
+}
+
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+
+.cat {
+  display: inline-block;
+  border: 1px solid #1f6f9e;
+  padding: 5px 10px;
+  margin: 3px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+.cat.picked {
+  background: #1f6f9e;
+  color: white;
+}
+
+/* hotel and restaurant lists */
+.listing {
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid #ccc;
+  padding: 15px 0;
+}
+.listing .pic {
+  width: 200px;
+  min-width: 200px;
+}
+.listing h3 {
+  margin-top: 0;
+}
+
+/* the map (just a drawing) */
+.map {
+  position: relative;
+  height: 350px;
+  background: #a6d8ee;
+  border: 1px solid #999;
+}
+.land {
+  position: absolute;
+  left: 15%;
+  top: 10%;
+  width: 70%;
+  height: 80%;
+  background: #9ccc8c;
+  border-radius: 50%;
+}
+.dot {
+  position: absolute;
+  font-size: 12px;
+  background: white;
+  border: 1px solid black;
+  padding: 2px 4px;
+  cursor: pointer;
+}
+.mapLabel {
+  position: absolute;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* activity page */
+.twoCol {
+  display: flex;
+  gap: 30px;
+}
+.twoCol > div {
+  flex: 1;
+}
+.bookBox {
+  border: 2px solid #1f6f9e;
+  padding: 15px;
+}
+.bookBox p {
+  margin: 8px 0;
+}
+.mobileBook {
+  display: none;
+}
+
+/* travel info */
+.infoItem {
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+.infoTitle {
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  background: #f4f4f4;
+}
+.infoText {
+  display: none;
+  padding: 10px;
+}
+
+.steps span {
+  display: inline-block;
+  padding: 8px;
+  background: #eee;
+  margin-right: 5px;
+}
+.steps span.on {
+  background: #1f6f9e;
+  color: white;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: left;
+}
+
+#footer {
+  background: #1f6f9e;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+  font-size: 13px;
+}
+
+/* phone */
+@media (max-width: 800px) {
+  #menuBtn {
+    display: block;
+  }
+  #navList {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    order: 5;
+  }
+  #navList.open {
+    display: flex;
+  }
+  .header-btns {
+    flex: none;
+    margin-left: auto;
+  }
+  .header-btns button {
+    white-space: nowrap;
+  }
+  #navList {
+    text-align: center;
+  }
+  .logo {
+    font-size: 22px;
+    white-space: nowrap;
+  }
+  .page {
+    padding: 10px 15px;
+  }
+  .row4 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .row3 {
+    grid-template-columns: 1fr;
+  }
+  .twoCol {
+    flex-direction: column;
+  }
+  .listing {
+    flex-direction: column;
+  }
+  .listing .pic {
+    width: 100%;
+  }
+  .mapWrap {
+    overflow-x: auto;
+  }
+  .map {
+    width: 600px;
+  }
+  .tableWrap {
+    overflow-x: auto;
+  }
+  .mobileBook {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #999;
+    padding: 10px 15px;
+  }
+  #activity {
+    padding-bottom: 80px;
+  }
+}
